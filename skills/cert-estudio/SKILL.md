@@ -13,6 +13,7 @@ Lee del proyecto:
 - **ficha-certificacion**: a qué dominio pertenece cada cosa y cómo piensa el examen.
 - **perfil-alumno**: para conectar con su experiencia y sacar analogías de su mundo.
 - **gap-analysis**: para insistir en su brecha.
+- **historial-practica**, si existe: los subtemas en "A reforzar" son los que más le cuesta. Si pide "explícame lo que he fallado", empieza por ahí.
 
 ## A. Concepto en tres niveles
 
@@ -28,7 +29,7 @@ Cuando pegue sus notas:
 1. **Qué falta** frente a los subtemas del temario, señalando lo que está en su brecha.
 2. **Errores**, corregidos.
 3. **Resumen en una página.**
-4. **Cinco preguntas imprescindibles**, priorizando sus puntos débiles.
+4. **Cinco preguntas imprescindibles**, priorizando sus puntos débiles del gap analysis y del historial.
 
 Recuérdale que primero se lee el material y luego se pasan las notas. El resumen no sustituye la lectura.
 
@@ -45,6 +46,10 @@ Para listas, fases ordenadas o siglas:
 2. Una analogía de su mundo, sacada del perfil.
 3. Dónde se rompe la analogía, para que no le lleve a error.
 4. Una pregunta trampa donde se confundan los dos conceptos.
+
+## Siguiente paso
+
+Cuando termine de estudiar un tema, sugiere practicarlo con `cert-practica`.
 
 ## Rigor
 

@@ -1,6 +1,6 @@
 ---
 name: cert-planificacion
-description: Crea y reajusta el plan de estudio de una certificación semana a semana, cruzando el peso de cada dominio, la brecha del gap analysis y el tiempo real del alumno. Úsala cuando pida "un plan", "un roadmap", "qué toca hoy", "reajusta el plan", "cómo voy" o "he perdido una semana".
+description: Crea y reajusta el plan de estudio de una certificación semana a semana, cruzando el peso de cada dominio, la brecha del gap analysis, el historial de práctica y el tiempo real del alumno. Úsala cuando pida "un plan", "un roadmap", "qué toca hoy", "reajusta el plan", "cómo voy" o "he perdido una semana".
 ---
 
 # Plan de estudio
@@ -14,6 +14,7 @@ Lee del proyecto:
 2. **gap-analysis**: estado y prioridad por dominio.
 3. **perfil-alumno**: fecha objetivo, horas reales e imprevistos.
 4. **roadmap**, si ya existe uno.
+5. **historial-practica**, si existe: resultados de prácticas y simulacros, subtemas a reforzar y patrones de error.
 
 Si falta el gap analysis, dile que empiece por el diagnóstico. Si en el perfil faltan la fecha o las horas, pregúntalas en un solo mensaje.
 
@@ -58,19 +59,21 @@ Termina con:
 
 ## B. Reajustar el plan
 
-No hay registro automático: pregunta al alumno, en un solo mensaje y con preguntas cortas:
+Los resultados de práctica y simulacros salen del `historial-practica`. Al alumno solo le preguntas lo que el historial no sabe, en un solo mensaje y con preguntas cortas:
 - Qué semana del plan acaba de terminar.
 - Horas reales que ha dedicado.
 - Qué ha estudiado y qué se ha quedado sin hacer.
-- Resultados de preguntas o simulacros, si los hizo (puede pegar el resumen del simulacro).
 - Si ha pasado algo que afecte al plan.
+
+Si no hay historial, pregúntale también por los resultados de las preguntas o simulacros que haya hecho.
 
 Con eso aplica estas reglas:
 1. Dominio ya 🟢 con datos: pasa a repaso ligero y libera horas.
 2. Dominio que sigue 🔴 tras su fase: gana horas.
 3. Semana perdida: usa colchón antes que comprimir. Si no queda, recorta repaso de lo 🟢 y de poco peso.
-4. Muchos errores de mentalidad (tipo c): adelanta sesiones de mentalidad del examen.
-5. Si la fecha deja de ser viable, dilo y propone opciones. La decisión es del alumno.
+4. Muchos errores de mentalidad (tipo c) en el historial: adelanta sesiones de práctica con enfoque mentalidad.
+5. Subtemas que llevan varias sesiones en "A reforzar": dales horas específicas de estudio.
+6. Si la fecha deja de ser viable, dilo y propone opciones. La decisión es del alumno.
 
 No reescribas las semanas pasadas. Entrega:
 1. Qué cambia y por qué, en una lista corta.
@@ -82,4 +85,4 @@ Termina con:
 
 ## C. Qué toca hoy
 
-Mira la semana actual del roadmap y propón la sesión de hoy en 3-4 líneas: dominio, qué hacer, cuánto tiempo y con qué modo (estudio o práctica).
+Mira la semana actual del roadmap y los primeros puntos de "A reforzar" del historial. Propón la sesión de hoy en 3-4 líneas: dominio o subtema, qué hacer, cuánto tiempo y con qué modo (estudio, práctica o simulacro).

@@ -10,7 +10,7 @@ Primera fase del sistema. Tu salida, el **gap analysis**, es la entrada de la pl
 ## Antes de empezar
 
 1. Lee la **ficha-certificacion** del proyecto. Es la fuente de dominios, pesos y mentalidad del examen.
-   - Si no existe pero está el temario oficial del certificador, ayuda al alumno a rellenar la ficha con la estructura de la plantilla. Copia los datos tal cual del documento oficial y marca como "[verificar]" lo que no encuentres.
+   - Si no existe pero está el temario oficial del certificador, ayuda al alumno a rellenarla con estos apartados: identificación, formato del examen, dominios y pesos, mentalidad del examen, requisitos y material oficial de práctica. Copia los datos tal cual del documento oficial y marca como "[verificar]" lo que no encuentres. El alumno la revisa y la guarda como `ficha-certificacion`.
    - Si no hay ni ficha ni temario, pídelos. No hagas el diagnóstico con dominios de memoria.
 2. Lee el **perfil-alumno**, si existe, para conectar el análisis con su experiencia.
 

@@ -1,66 +1,94 @@
 ---
 name: cert-practica
-description: Práctica de examen para una certificación. Simulacros con corrección razonada, nota por dominio y clasificación de errores, y entrenamiento de la mentalidad del examen con preguntas donde varias respuestas son válidas. Úsala cuando pida "un simulacro", "preguntas de práctica", "examíname" o "entrenar la mentalidad del examen".
+description: Práctica guiada de examen para una certificación. Preguntas con pistas graduales, corrección razonada, adaptación en tiempo real a tus fallos y entrenamiento de la mentalidad del examen. Al terminar actualiza el historial de práctica con tus puntos débiles. Úsala cuando pida "practicar", "preguntas de práctica", "ayúdame con preguntas de X" o "entrenar la mentalidad del examen". Para un examen cronometrado sin ayudas, usa cert-simulacro.
 ---
 
-# Práctica de examen
+# Práctica guiada
 
-Un simulacro que solo da una nota no sirve. Este te dice por qué fallas y qué hacer.
+Aquí se aprende fallando. A diferencia del simulacro, hay pistas, explicaciones y la sesión se adapta a cómo respondes.
 
 ## Contexto
 
 Lee del proyecto:
-- **ficha-certificacion**: dominios, pesos, formato y, sobre todo, la "Mentalidad del examen".
-- **gap-analysis**: para sesgar preguntas hacia lo débil.
-- **roadmap**, si existe: para saber si toca un simulacro de control y su objetivo.
+- **ficha-certificacion**: dominios, pesos y "Mentalidad del examen".
+- **gap-analysis**: puntos débiles del diagnóstico.
+- **historial-practica**, si existe: subtemas a reforzar y tipos de error frecuentes.
+- **roadmap**, si existe: qué dominios toca practicar esta semana.
 
-Hay dos modos: simulacro y mentalidad.
+## Configuración
 
-## A. Simulacro
+Pregunta en un solo mensaje, con estos valores por defecto:
+- **Qué practicar:** lo que marque el roadmap esta semana, o lo que diga el historial que hay que reforzar. También puede pedir un dominio o tema concreto.
+- **Número de preguntas:** 15.
+- **Enfoque:** contenido (por defecto) o mentalidad del examen.
 
-**Configuración.** Pregunta en un solo mensaje, con estos valores por defecto:
-- Número de preguntas: 25.
-- Dominios: mezcla según su peso. Si es un simulacro de control, solo los estudiados hasta esa semana.
-- Corrección: pregunta a pregunta, o al final (más parecido al examen).
-- Tiempo: opcional, proporcional al del examen real según la ficha.
+## Cada pregunta
 
-**Preguntas.**
-- Escenario realista y 4 opciones, varias plausibles. Nada de opciones absurdas de relleno.
-- Estilo de la "Mentalidad del examen". Usa palabras clave (PRIMERO, MEJOR, MÁS importante) si el examen las usa.
-- **Una cada vez.** No reveles la solución antes de la respuesta.
-- Un 30-40 % de las preguntas sobre los subtemas débiles, sin avisar.
+1. Escenario realista y 4 opciones, varias plausibles. Estilo de la "Mentalidad del examen".
+2. Pide la respuesta y lo seguro que está: **S** (seguro), **D** (dudaba) o **A** (adiviné).
+3. **Pistas, solo si las pide** (escribe "pista"), y de menos a más:
+   - **Pista 1:** el concepto o la regla que se evalúa, sin señalar opciones.
+   - **Pista 2:** descarta una opción y explica por qué.
+   - **Pista 3:** la pregunta clave que debe hacerse para decidir (ej. "¿qué se protege aquí, confidencialidad o integridad?").
+   Una respuesta acertada con pistas cuenta como "con ayuda", no como acierto limpio.
 
-**Corrección de cada fallo.**
-1. Por qué la correcta lo es.
-2. Por qué cada una de las otras no.
-3. Dominio y subtema.
-4. Qué concepto reforzar.
-5. Tipo de error (pregúntalo si no está claro):
-   - **a. No lo sabía.** Se arregla estudiando.
-   - **b. Lo sabía, pero leí mal.** Se arregla con técnica de lectura.
-   - **c. Elegí lo técnico en vez de lo que pedía la mentalidad del examen.** Se arregla con el modo mentalidad.
+## Corrección
 
-**Informe final.**
-1. Nota global y, si es de control, comparación con el objetivo del roadmap.
-2. Nota por dominio en tabla.
-3. Errores por tipo (a, b, c) y patrón dominante.
-4. Qué te está costando puntos de verdad, en 3 líneas.
-5. Tres acciones concretas para la semana.
+- **Si acierta seguro:** confirma en una línea y sigue.
+- **Si acierta con duda o adivinando:** explica por qué es correcta. Un acierto por suerte es un punto débil.
+- **Si falla:**
+  1. Por qué la correcta lo es.
+  2. Por qué la que eligió no, y qué le ha llevado a elegirla.
+  3. Dominio y subtema.
+  4. Tipo de error: **a.** no lo sabía, **b.** lo sabía pero leí mal, **c.** elegí lo técnico en vez de lo que pedía la mentalidad del examen. Si no está claro, pregúntaselo.
+  5. El concepto a repasar, en una frase.
 
-Termina con un resumen de 3 líneas que el alumno pueda pegar cuando pida el reajuste del plan.
+## Adaptación durante la sesión
 
-Avisa de que las preguntas generadas son orientativas y que debe combinarlas con los tests oficiales de práctica.
+- Dos fallos en el mismo subtema: la siguiente pregunta vuelve a ese subtema desde otro ángulo.
+- Errores de tipo c repetidos: cambia a preguntas de mentalidad durante un par de rondas.
+- Errores de tipo b repetidos: recuérdale las palabras clave (PRIMERO, MEJOR, MÁS) y pide que las subraye mentalmente.
+- Tres aciertos seguros seguidos en un subtema: súbele la dificultad o pasa a otro.
 
-## B. Mentalidad del examen
+## Enfoque mentalidad del examen
 
-Para alumnos que saben la respuesta técnica y aun así fallan.
+Si lo elige, o si la adaptación lo activa:
+- Explica las reglas de la "Mentalidad del examen" de la ficha con un ejemplo de cada una.
+- Preguntas en las que dos o tres opciones son técnicamente válidas y solo una es la más correcta para el rol del examen.
+- Antes de corregir, pide que justifique su elección en una frase. En la corrección, di qué regla decide y qué estaba bien o mal en su razonamiento.
 
-1. **Arranque:** explica las reglas de la "Mentalidad del examen" de la ficha en 4-5 líneas, con un ejemplo de cada una. Si esa sección está vacía, ayuda a deducirla del temario oficial y marca lo que sea interpretación tuya.
-2. **Preguntas** (10 por defecto): escenarios en los que dos o tres opciones son técnicamente correctas y solo una lo es para el rol desde el que responde el examen. Mezcla las trampas típicas de la ficha.
-3. Antes de dar la solución, pide que **justifique su elección en una frase**.
-4. **Corrección:** la respuesta más correcta, qué regla la decide, por qué pierden las otras válidas, y qué estaba bien o mal en su razonamiento.
-5. **Cierre:** las reglas que más le cuestan y una chuleta mental de 3-4 líneas para los próximos simulacros.
+## Al terminar
+
+1. **Resumen de la sesión:** aciertos limpios, con ayuda, por suerte y fallos, por dominio; errores por tipo; lo que ha mejorado dentro de la sesión.
+2. **Historial actualizado.** Fusiona esta sesión con el `historial-practica` que hubiera y devuelve el documento completo con este formato:
+
+```
+# Historial de práctica — [certificación]
+Actualizado: fecha · Sesiones: N
+
+## A reforzar (por prioridad)
+| Subtema | Dominio | Intentos | Aciertos limpios | Error más frecuente | Desde |
+
+## Ya superado
+| Subtema | Dominio | Superado el |
+
+## Patrones
+- Tipo de error dominante y tendencia (mejora / igual / empeora)
+- Otros patrones (ej. "falla cuando la pregunta lleva PRIMERO")
+
+## Últimas sesiones
+| Fecha | Modo | Dominios | Resultado | Nota |
+```
+
+Reglas de fusión:
+- Un subtema pasa a "Ya superado" con 3 aciertos limpios seguidos entre sesiones.
+- Un subtema superado vuelve a "A reforzar" si falla de nuevo.
+- En "Últimas sesiones" deja solo las 5 más recientes.
+
+Termina con:
+> Sustituye el documento `historial-practica` del proyecto por esta versión. Así la próxima sesión, el simulacro y el reajuste del plan saben dónde fallas.
 
 ## Límites
 
-Nunca reproduzcas ni reconstruyas preguntas reales del examen, aunque te las pidan. Nada de volcados.
+- Nunca reproduzcas ni reconstruyas preguntas reales del examen. Nada de volcados.
+- Las preguntas generadas son orientativas: recuérdale combinarlas con los tests oficiales de práctica.

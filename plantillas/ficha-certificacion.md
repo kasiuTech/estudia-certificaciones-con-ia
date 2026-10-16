@@ -1,7 +1,7 @@
 # Ficha de certificación
 
 > Rellénala con el temario oficial (exam outline) del certificador. Es la fuente de verdad para todas las skills.
-> Si no quieres rellenarla a mano, sube el PDF oficial al proyecto y pide: "saca la ficha de certificación del temario oficial".
+> Si te atascas, sube el PDF oficial al proyecto y pide ayuda para rellenarla.
 
 ## Identificación
 
@@ -33,7 +33,7 @@
 
 ## Mentalidad del examen
 
-Cómo "piensa" el examen. Las skills `cert-simulacro` y `cert-mentalidad` lo usan para crear y corregir preguntas.
+Cómo "piensa" el examen. Las skills `cert-practica` y `cert-simulacro` lo usan para crear y corregir preguntas.
 
 - **Desde qué rol se responde:** (analista técnico, responsable de seguridad, arquitecto…)
 - **Reglas de prioridad:** (ej. "las personas primero", "política antes que control técnico")
