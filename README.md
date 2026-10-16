@@ -2,7 +2,7 @@
 
 Un sistema abierto para preparar **cualquier certificación de ciberseguridad** con IA: diagnóstico inicial, plan adaptado a tu tiempo real, estudio guiado y simulacros con análisis de errores.
 
-Nació del vídeo de Kasiu Tech **"Así usé la IA para aprobar el CISSP"**, pero no está atado al CISSP. Cambias una ficha y sirve para Security+, CySA+, AZ-500, CCSP o la que tengas delante.
+Nació del vídeo de Kasiu Tech **"Así usé la IA para aprobar el CISSP"**, pero no está atado al CISSP. Rellenas una ficha y sirve para Security+, CySA+, AZ-500, CCSP o la que tengas delante.
 
 > La IA no estudia por ti. Te quita horas mal aprovechadas. Las buenas las sigues poniendo tú.
 
@@ -12,136 +12,106 @@ Nació del vídeo de Kasiu Tech **"Así usé la IA para aprobar el CISSP"**, per
 
 ```
 ├── proyecto/
-│   ├── instrucciones-proyecto.md            ← instrucciones para el proyecto (con skills)
-│   └── instrucciones-proyecto-sin-skills.md ← versión para el plan gratuito
-├── plantillas/                              ← los documentos que conectan todas las piezas
+│   ├── instrucciones-proyecto.md             ← con skills (planes de pago)
+│   └── instrucciones-proyecto-sin-skills.md  ← plan gratuito
+├── plantillas/                               ← lo único que rellenas tú
 │   ├── ficha-certificacion.md
-│   ├── perfil-alumno.md
-│   ├── gap-analysis.md
-│   ├── roadmap.md
-│   └── registro-progreso.md
-├── skills/                                  ← una skill por cada modo
+│   └── perfil-alumno.md
+├── skills/                                   ← una skill por capacidad
 │   ├── cert-diagnostico/
 │   ├── cert-planificacion/
-│   ├── cert-reajuste/
 │   ├── cert-estudio/
-│   ├── cert-memoria/
-│   ├── cert-simulacro/
-│   ├── cert-mentalidad/
-│   └── cert-registro/
-├── ejemplos/
-│   └── cissp/ficha-certificacion.md         ← ficha rellena de ejemplo
-└── scripts/
-    └── empaquetar-skills.sh                 ← genera los .zip para subir las skills
+│   └── cert-practica/
+└── ejemplos/
+    └── cissp/ficha-certificacion.md          ← ficha rellena de ejemplo
 ```
 
 ---
 
-## Cómo encaja todo
+## Las cuatro capacidades
 
-Todas las skills leen y escriben los mismos documentos. Por eso cada pieza sabe lo que han hecho las demás, aunque abras un chat nuevo cada día.
+| Fase | Skill | Qué hace | Qué genera |
+|---|---|---|---|
+| 1. Diagnóstico | `cert-diagnostico` | Test inicial marcando lo seguro que estás en cada respuesta | `gap-analysis` |
+| 2. Plan | `cert-planificacion` | Roadmap semana a semana con tu tiempo real. Lo reajusta cuando se lo pides y te dice qué toca hoy | `roadmap` |
+| 3. Estudio | `cert-estudio` | Conceptos en tres niveles, revisión de apuntes, resúmenes, mnemotecnias y analogías | — |
+| 4. Práctica | `cert-practica` | Simulacros con corrección razonada y entrenamiento de la mentalidad del examen | — |
+
+## Cómo encaja todo
 
 ```mermaid
 flowchart LR
     F[ficha-certificacion] --> D[Diagnóstico]
     P[perfil-alumno] --> D
     D --> G[gap-analysis]
-    G --> PL[Planificación]
+    G --> PL[Plan]
     P --> PL
-    F --> PL
     PL --> R[roadmap]
-    R --> E[Estudio / Memoria]
-    R --> S[Simulacro / Mentalidad]
-    E --> REG[registro-progreso]
-    S --> REG
-    REG --> RJ[Reajuste semanal]
-    RJ --> R
+    R --> E[Estudio]
+    R --> S[Práctica]
+    S -. resultados .-> PL
 ```
 
-| Documento | Quién lo crea | Quién lo usa |
-|---|---|---|
-| `ficha-certificacion` | Tú (o `cert-diagnostico` a partir del temario oficial) | Todas las skills |
-| `perfil-alumno` | Tú | Planificación, estudio, memoria |
-| `gap-analysis` | `cert-diagnostico` | Planificación, estudio, simulacro |
-| `roadmap` | `cert-planificacion` y `cert-reajuste` | Estudio, simulacro, reajuste |
-| `registro-progreso` | `cert-registro` (al cerrar cada sesión) | Reajuste |
-
----
-
-## Los modos
-
-| Modo | Skill | Para qué |
-|---|---|---|
-| Diagnóstico | `cert-diagnostico` | Test inicial con tu nivel de seguridad en cada respuesta. Saca el gap analysis. |
-| Planificación | `cert-planificacion` | Roadmap semana a semana: peso del dominio × tu brecha × tus horas reales. |
-| Reajuste semanal | `cert-reajuste` | Cada semana adapta el plan con lo que de verdad ha pasado. |
-| Estudio | `cert-estudio` | Conceptos en tres niveles, revisión de apuntes y resumen de capítulo. |
-| Memoria | `cert-memoria` | Mnemotecnias y analogías sacadas de tu mundo. |
-| Práctica de examen | `cert-simulacro` | Simulacros con corrección razonada y clasificación de errores. |
-| Mentalidad del examen | `cert-mentalidad` | Preguntas donde varias respuestas valen y hay que elegir la más correcta. |
-| Registro | `cert-registro` | Cierra cada sesión con un bloque listo para el registro de progreso. |
+Tú rellenas dos documentos. Las skills generan otros dos, que guardas en el proyecto. Con esos cuatro, cualquier chat nuevo sabe dónde estás.
 
 ---
 
 ## Puesta en marcha
 
-Las instrucciones están pensadas para Claude (proyectos + skills). La idea funciona igual en otras herramientas con proyectos o asistentes personalizados.
+Pensado para Claude (proyectos + skills). La idea funciona igual en herramientas con proyectos o asistentes personalizados.
 
-### 1. Prepara tus documentos
+### 1. Rellena tus dos documentos
 
-1. Descarga el temario oficial de tu certificación. Es el **exam outline**, el documento del propio certificador con dominios, subtemas y pesos.
-2. Copia `plantillas/ficha-certificacion.md` y rellénala con ese temario. Si te da pereza, en el paso 4 la skill de diagnóstico te ayuda a sacarla del PDF oficial.
-3. Copia `plantillas/perfil-alumno.md` y rellénala con **tu tiempo real**, no con el que te gustaría tener.
-4. Copia `plantillas/registro-progreso.md` tal cual. Empieza vacío.
+1. Descarga el **temario oficial** (exam outline) de tu certificación desde la web del certificador.
+2. Rellena `plantillas/ficha-certificacion.md` con ese temario. Para el CISSP tienes un ejemplo en `ejemplos/cissp/`.
+3. Rellena `plantillas/perfil-alumno.md` con **tu tiempo real**, no con el que te gustaría tener.
 
 ### 2. Crea el proyecto
 
-1. En Claude, ve a **Proyectos → Crear proyecto**. Ponle el nombre de tu certificación.
-2. En las instrucciones del proyecto, pega el contenido de `proyecto/instrucciones-proyecto.md`. Si estás en el plan gratuito, usa `proyecto/instrucciones-proyecto-sin-skills.md`.
-3. Sube a los documentos del proyecto el temario oficial, tu ficha, tu perfil y el registro.
+1. En Claude, crea un proyecto con el nombre de tu certificación.
+2. Pega en las instrucciones el contenido de `proyecto/instrucciones-proyecto.md` (o la versión sin skills si estás en el plan gratuito).
+3. Sube a los documentos del proyecto el temario oficial, tu ficha y tu perfil.
 
-### 3. Instala las skills (planes de pago)
+### 3. Añade las skills (planes de pago)
 
-```bash
-./scripts/empaquetar-skills.sh
-```
+1. Descarga el repositorio (botón **Code → Download ZIP**) y descomprímelo.
+2. Dentro de `skills/` hay cuatro carpetas. Comprime cada una en su propio `.zip` (en Windows: clic derecho → Comprimir en archivo ZIP). Cada `.zip` debe contener la carpeta con su `SKILL.md` dentro.
+3. Súbelos uno a uno desde la sección de skills de la configuración de Claude.
 
-El script deja un `.zip` por skill en `dist/`. Súbelos uno a uno desde la sección de skills de la configuración de Claude. Las skills personalizadas necesitan un plan de pago y la ejecución de código activada. La ruta de menús cambia a menudo; si no la encuentras, busca "skills" en el centro de ayuda de Claude.
+Las skills personalizadas necesitan un plan de pago y la ejecución de código activada. Los menús cambian a menudo; si no los encuentras, busca "skills" en el centro de ayuda de Claude.
 
 ### 4. Arranca
 
-Abre un chat dentro del proyecto y escribe:
+Abre un chat en el proyecto y escribe:
 
 > Quiero empezar con el diagnóstico.
-
-A partir de ahí, cada skill te dice cuál es el siguiente paso.
 
 ---
 
 ## Tu semana con el sistema
 
-1. **Cada día de estudio:** abre un chat en el proyecto y pide "¿qué toca hoy?". Estudia en modo estudio o memoria. Cierra con el bloque de registro y pégalo en `registro-progreso.md`.
-2. **Cuando el roadmap lo marque:** haz un simulacro y registra el resultado.
-3. **Cada domingo:** pide el reajuste semanal y sustituye el roadmap del proyecto por la versión nueva.
+1. **Al empezar:** diagnóstico → guarda el `gap-analysis` → pide el plan → guarda el `roadmap`.
+2. **Cada día:** pregunta "¿qué toca hoy?" y estudia o practica.
+3. **Cada semana:** pide "reajusta el plan". Te hará unas preguntas rápidas sobre cómo ha ido. Sustituye el `roadmap` del proyecto por la versión nueva.
 
-> Lo que no está en los documentos del proyecto, un chat nuevo no lo sabe. Mantén el registro al día y el sistema funciona solo.
+> Lo que no está en los documentos del proyecto, un chat nuevo no lo sabe. Guarda el gap analysis y el roadmap y todo lo demás funciona solo.
 
 ---
 
 ## Lo que esto NO hace
 
-- **No sustituye al material oficial.** La IA se equivoca, a veces con mucha seguridad. La fuente de verdad es siempre el temario y el material oficial del certificador.
-- **No reproduce preguntas reales del examen.** Casi todos los certificadores te hacen firmar un acuerdo de confidencialidad. Usar volcados de examen te puede costar la certificación. Este sistema entrena el razonamiento, no la memoria de unas preguntas.
-- **Las preguntas generadas son orientativas.** Combínalas con los tests oficiales de práctica, que son los que te dan el nivel real.
+- **No sustituye al material oficial.** La IA se equivoca, a veces con mucha seguridad. La fuente de verdad es el temario y el material del certificador.
+- **No reproduce preguntas reales del examen.** Casi todos los certificadores te hacen firmar un acuerdo de confidencialidad. Usar volcados te puede costar la certificación. Esto entrena el razonamiento, no la memoria de unas preguntas.
+- **Las preguntas generadas son orientativas.** Combínalas con los tests oficiales de práctica.
 - **No promete aprobar en dos semanas.** Si alguien te lo vende, desconfía.
 
 ---
 
 ## Adaptarlo a otra certificación
 
-Solo tienes que crear una `ficha-certificacion.md` nueva. Las skills no tienen nada del CISSP metido a fuego: leen dominios, pesos, formato y mentalidad del examen de la ficha.
+Solo cambia la ficha. Las skills no llevan nada del CISSP dentro: leen dominios, pesos, formato y mentalidad del examen de la ficha.
 
-Si has hecho la ficha de una certificación que no está en `ejemplos/`, mándala con un pull request. Mira [CONTRIBUTING.md](CONTRIBUTING.md).
+¿Has hecho la ficha de otra certificación? Compártela con un pull request. Mira [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
@@ -156,7 +126,7 @@ Lo lleva Kasiu, con más de 15 años en tecnología y hoy al frente de un equipo
 - 🧭 **Programa de Orientación y Carrera en Ciberdefensa:** [más información](ENLACE_AL_PROGRAMA)
 - 💼 **LinkedIn:** [Kasiu](ENLACE_A_LINKEDIN)
 
-Si esto te ayuda, una estrella en el repo y un comentario en el vídeo diciendo qué certificación estás preparando me sirven para saber qué preparar después.
+Si esto te ayuda, deja una estrella en el repo y un comentario en el vídeo diciendo qué certificación preparas. Así sé qué preparar después.
 
 ---
 

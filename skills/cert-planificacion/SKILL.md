@@ -1,45 +1,85 @@
 ---
 name: cert-planificacion
-description: Construye el roadmap de estudio de una certificación semana a semana, cruzando el peso de cada dominio, la brecha del gap analysis y el tiempo real del alumno, con semanas de colchón y simulacros de control. Úsala cuando pida "un plan", "un roadmap" o "planificar el estudio".
+description: Crea y reajusta el plan de estudio de una certificación semana a semana, cruzando el peso de cada dominio, la brecha del gap analysis y el tiempo real del alumno. Úsala cuando pida "un plan", "un roadmap", "qué toca hoy", "reajusta el plan", "cómo voy" o "he perdido una semana".
 ---
 
-# Planificación del roadmap
+# Plan de estudio
 
-Conviertes el diagnóstico en un plan que encaja en la vida real del alumno. Tu salida, el **roadmap**, la usan estudio, simulacro y reajuste.
+Conviertes el diagnóstico en un plan que encaja en la vida real del alumno, y lo vas ajustando.
 
-## Entradas obligatorias
+## Entradas
 
 Lee del proyecto:
 1. **ficha-certificacion**: dominios y pesos.
 2. **gap-analysis**: estado y prioridad por dominio.
 3. **perfil-alumno**: fecha objetivo, horas reales e imprevistos.
+4. **roadmap**, si ya existe uno.
 
-Si falta el gap analysis, dile que empiece por `cert-diagnostico`. Si en el perfil faltan la fecha o las horas, pregúntalas en un solo mensaje. Sin esos dos datos no hay plan.
+Si falta el gap analysis, dile que empiece por el diagnóstico. Si en el perfil faltan la fecha o las horas, pregúntalas en un solo mensaje.
 
-## Cómo calcular
+Hay tres peticiones posibles: crear el plan, reajustarlo o decir qué toca hoy.
 
-1. **Semanas disponibles** = semanas hasta la fecha objetivo.
-2. **Colchón:** reserva al menos 1 semana por cada 6, y más si el perfil describe imprevistos frecuentes (hijos, guardias, viajes). Repártelas por el plan, no todas al final.
-3. **Horas por dominio:** reparte las horas de estudio en proporción a `peso × factor de brecha`. Factor de brecha: 🔴 = 3, 🟡 = 2, 🟢 = 1. Los 🟢 solo reciben repaso.
+## A. Crear el plan
+
+1. **Semanas disponibles** hasta la fecha objetivo.
+2. **Colchón:** al menos 1 semana por cada 6, y más si el perfil describe imprevistos frecuentes (hijos, guardias, viajes). Repártelas por el plan, no al final.
+3. **Horas por dominio:** en proporción a `peso × factor de brecha`, donde 🔴 = 3, 🟡 = 2 y 🟢 = 1. Los 🟢 solo reciben repaso.
 4. **Fases:**
-   - **Base:** los 🔴 de más peso.
-   - **Profundización:** los 🟡 y el resto de 🔴.
-   - **Práctica intensiva:** simulacros completos y `cert-mentalidad`.
-   - **Repaso final:** las 2 últimas semanas. Sin material nuevo.
-5. **Simulacros de control** cada 3-4 semanas, sobre lo estudiado hasta ese momento, con un objetivo de nota.
-6. **Viabilidad:** si las horas totales no alcanzan para cubrir el temario con un mínimo razonable, dilo claramente y propone alternativas: mover la fecha, sumar horas concretas o asumir más riesgo en los dominios de menos peso. No escondas el problema.
+   - Base: los 🔴 de más peso.
+   - Profundización: los 🟡 y el resto de 🔴.
+   - Práctica intensiva: simulacros completos y mentalidad del examen.
+   - Repaso final: las 2 últimas semanas, sin material nuevo.
+5. **Simulacros de control** cada 3-4 semanas, con un objetivo de nota.
+6. **Viabilidad:** si las horas no alcanzan, dilo claro y propone opciones: mover la fecha, sumar horas concretas o asumir riesgo en los dominios de menos peso.
 
-## Salida
+Entrega el roadmap como documento:
 
-Genera el roadmap con la estructura exacta de `plantillas/roadmap.md`:
-- Fases con sus semanas.
-- Tabla semana a semana: fechas, fase, dominios, qué hacer, horas e hito.
-- Simulacros de control con objetivo.
-- Historial de cambios con "v1 · Plan inicial".
+```
+# Roadmap — [certificación] · v1 · fecha
+Examen: · Semanas: __ (__ de colchón) · Horas/semana:
 
-Después del roadmap, en 3-4 líneas: la lógica del reparto (por qué cada dominio lleva esas horas) y el mayor riesgo del plan.
+## Fases
+| Fase | Semanas | Objetivo |
+
+## Semana a semana
+| Semana | Fechas | Fase | Dominios | Qué hacer | Horas | Hito |
+
+## Simulacros de control
+| Semana | Dominios | Objetivo de nota |
+
+## Cambios
+| Versión | Fecha | Qué cambió y por qué |
+```
+
+Después, en 3-4 líneas: por qué cada dominio lleva esas horas y cuál es el mayor riesgo del plan.
 
 Termina con:
-> Guarda esto como `roadmap` en los documentos del proyecto. Cada día puedes preguntar "¿qué toca hoy?", y cada semana pide "reajusta el plan".
+> Guarda este documento como `roadmap` en el proyecto. Cada semana, pide "reajusta el plan".
 
-Ofrece el bloque de registro (`cert-registro`).
+## B. Reajustar el plan
+
+No hay registro automático: pregunta al alumno, en un solo mensaje y con preguntas cortas:
+- Qué semana del plan acaba de terminar.
+- Horas reales que ha dedicado.
+- Qué ha estudiado y qué se ha quedado sin hacer.
+- Resultados de preguntas o simulacros, si los hizo (puede pegar el resumen del simulacro).
+- Si ha pasado algo que afecte al plan.
+
+Con eso aplica estas reglas:
+1. Dominio ya 🟢 con datos: pasa a repaso ligero y libera horas.
+2. Dominio que sigue 🔴 tras su fase: gana horas.
+3. Semana perdida: usa colchón antes que comprimir. Si no queda, recorta repaso de lo 🟢 y de poco peso.
+4. Muchos errores de mentalidad (tipo c): adelanta sesiones de mentalidad del examen.
+5. Si la fecha deja de ser viable, dilo y propone opciones. La decisión es del alumno.
+
+No reescribas las semanas pasadas. Entrega:
+1. Qué cambia y por qué, en una lista corta.
+2. El roadmap completo con la versión incrementada (v2, v3…) y una fila nueva en "Cambios".
+3. El foco de la semana que empieza, en una frase.
+
+Termina con:
+> Sustituye el documento `roadmap` del proyecto por esta versión.
+
+## C. Qué toca hoy
+
+Mira la semana actual del roadmap y propón la sesión de hoy en 3-4 líneas: dominio, qué hacer, cuánto tiempo y con qué modo (estudio o práctica).
